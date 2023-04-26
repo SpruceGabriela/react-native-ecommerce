@@ -17,12 +17,14 @@
   "dependencies": {
     "expo": "~48.0.15",
     "expo-status-bar": "~1.4.4",
+    "metro": "^0.76.3",
     "react": "18.2.0",
     "react-native": "0.71.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "@types/react": "~18.0.14",
+    "@types/react-native": "^0.71.6",
     "eslint": "^8.39.0",
     "eslint-config-airbnb": "^19.0.4",
     "husky": "^8.0.3",
