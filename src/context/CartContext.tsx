@@ -3,8 +3,7 @@ import {
   CartContextProps,
   CartContextProviderProps,
 } from "./CartContext.types";
-import { CartItemType } from "../shared/types";
-import { getProductById } from "../services/api";
+import { CartItemType, ProductType } from "../shared/types";
 
 export const CartContext = createContext<CartContextProps>(
   {} as CartContextProps
@@ -13,18 +12,16 @@ export const CartContext = createContext<CartContextProps>(
 export const CartProvider = ({ children }: CartContextProviderProps) => {
   const [items, setItems] = useState<CartItemType[]>([]);
 
-  const addItemToCart = (id: number) => {
-    const product = getProductById(id);
-
+  const addItemToCart = (product: ProductType) => {
     if (!product) return;
 
     setItems((prevItems) => {
-      const item = prevItems.find((item) => item.id == id);
+      const item = prevItems.find((item) => item.id === product.id);
       if (!item) {
         return [
           ...prevItems,
           {
-            id,
+            id: product.id,
             quantity: 1,
             product,
             totalPrice: product.price,
@@ -32,7 +29,7 @@ export const CartProvider = ({ children }: CartContextProviderProps) => {
         ];
       } else {
         return prevItems.map((item) => {
-          if (item.id == id) {
+          if (item.id === product.id) {
             item.quantity++;
             item.totalPrice += product.price;
           }
