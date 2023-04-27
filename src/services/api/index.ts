@@ -21,8 +21,8 @@ const fetchProduct = async (
   try {
     const { data } = await api.get(`/products/${productId}`);
     return data;
-  } catch (_) {
-    throw new Error(`Error fetching product.`);
+  } catch (error) {
+    throw new Error(`Error fetching product. ${error}`);
   }
 };
 
