@@ -8,10 +8,11 @@ import ProductsList from "./src/screens/ProductList/ProductList";
 import ProductDetails from "./src/screens/ProductDetails/ProductDetails";
 import Cart from "./src/screens/Cart/Cart";
 import CartIcon from "./src/components/CartIcon/CartIcon";
+import { ProductType } from "./src/shared/types";
 
 type RootStackParamList = {
   Products: {};
-  ProductDetails: { productId: number };
+  ProductDetails: { productId: number; product: ProductType };
   Cart: {};
 };
 

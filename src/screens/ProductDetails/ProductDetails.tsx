@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 import {
   Text,
   Image,
@@ -8,36 +8,39 @@ import {
   Button,
 } from "react-native";
 import { CartContext } from "../../context/CartContext";
-import { getProductById } from "../../services/api";
-import { ProductType } from "../../shared/types";
+import { useProduct } from "../../services/api";
 import { ProductDetailsProps } from "./ProductDetails.types";
 import { styles } from "./ProductDetails.style";
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ route }) => {
-  const { productId } = route.params;
-  const [product, setProduct] = useState<ProductType>();
+  const { productId, product } = route.params;
+  const { data, isLoading, isError } = useProduct(productId);
 
   const { addItemToCart } = useContext(CartContext);
 
-  useEffect(() => {
-    setProduct(getProductById(productId));
-  });
+  if (isLoading) {
+    return <Text>loading</Text>;
+  }
 
-  function onAddToCart() {
-    if (product) {
-      addItemToCart(product.id);
+  if (isError) {
+    return <Text>error</Text>;
+  }
+
+  const onAddToCart = () => {
+    if (data) {
+      addItemToCart(product);
     }
   }
 
-  if (product) {
+  if (data) {
     return (
       <SafeAreaView>
         <ScrollView>
-          <Image style={styles.image} source={{ uri: product.image }} />
+          <Image style={styles.image} source={{ uri: data.image }} />
           <View style={styles.infoContainer}>
-            <Text style={styles.name}>{product.name}</Text>
-            <Text style={styles.price}>$ {product.price}</Text>
-            <Text style={styles.description}>{product.description}</Text>
+            <Text style={styles.name}>{data.title}</Text>
+            <Text style={styles.price}>$ {data.price}</Text>
+            <Text style={styles.description}>{data.description}</Text>
             <Button onPress={onAddToCart} title="Add to cart" />
           </View>
         </ScrollView>
