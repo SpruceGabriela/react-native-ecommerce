@@ -39,7 +39,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ route }) => {
           <Image style={styles.image} source={{ uri: data.image }} />
           <View style={styles.infoContainer}>
             <Text style={styles.name}>{data.title}</Text>
-            <Text style={styles.price}>$ {data.price}</Text>
+            <Text style={styles.price}>$ {data.price.toFixed(2)}</Text>
             <Text style={styles.description}>{data.description}</Text>
             <Button onPress={onAddToCart} title="Add to cart" />
           </View>

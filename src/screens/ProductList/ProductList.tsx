@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  FlatList,
-  View,
-} from "react-native";
+import { FlatList, View } from "react-native";
 import ProductContainer from "../../components/ProductContainer";
 import { ProductListProps } from "./ProductList.types";
 import { useProductsList } from "../../services/api/index";
@@ -34,6 +31,8 @@ const ProductsList: React.FC<ProductListProps> = ({ navigation }) => {
               name={item.title}
               image={item.image}
               price={item.price}
+              product={item}
+              id={item.id}
               onPress={() => {
                 navigation.navigate("ProductDetails", {
                   product: item,

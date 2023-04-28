@@ -5,18 +5,28 @@ import {
   FlatList,
   ListRenderItem,
   ListRenderItemInfo,
-  ScrollView,
   SafeAreaView,
   Image,
   Button,
 } from "react-native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { ParamListBase } from "@react-navigation/native";
+import { useNavigation } from "@react-navigation/native";
 import { CartContext } from "../../context/CartContext";
 import { CartProps } from "./Cart.types";
 import { CartItemType } from "../../shared/types";
 import { styles } from "./Cart.styles";
+import QuickAdd from "../../components/QuickAdd/QuickAdd";
 
 const Cart: React.FC<CartProps> = () => {
   const { items, getTotalPrice } = useContext(CartContext);
+   const navigation = useNavigation<NativeStackNavigationProp<ParamListBase>>();
+
+  useEffect(() => {
+    if (items.length === 0) {
+      navigation.navigate("Products");
+    }
+  }, [items, navigation]);
 
   const Totals = () => {
     let [total, setTotal] = useState(0);
@@ -48,10 +58,11 @@ const Cart: React.FC<CartProps> = () => {
           />
           <View style={styles.productInfo}>
             <Text style={styles.lineLeft}>
-              {info.item.product.title.slice(0, 15)}... x {info.item.quantity}
+              {info.item.product.title.slice(0, 10)}
             </Text>
             <Text style={styles.lineRight}>$ {info.item.totalPrice}</Text>
           </View>
+          <QuickAdd product={info.item.product} quantity={info.item.quantity} />
         </View>
       );
     }

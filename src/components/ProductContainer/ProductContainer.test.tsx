@@ -5,6 +5,15 @@ import ProductContainer from "./ProductContainer";
 describe("<ProductContainer />", () => {
   const mockOnPress = jest.fn();
   const imageUrl = "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg";
+  const product = {
+    id: 1,
+    title: "Test product",
+    price: 12.0,
+    description: "Test description",
+    category: "Test category",
+    image: imageUrl,
+    rating: { rate: 3.9, count: 120 },
+  };
 
   it("should be defined", () => {
     expect(ProductContainer).toBeDefined();
@@ -17,6 +26,7 @@ describe("<ProductContainer />", () => {
         price={109.95}
         image={imageUrl}
         onPress={mockOnPress}
+        product={product}
       />
     );
 
@@ -34,6 +44,7 @@ describe("<ProductContainer />", () => {
         price={109.95}
         image={imageUrl}
         onPress={mockOnPress}
+        product={product}
       />
     );
 
@@ -49,6 +60,7 @@ describe("<ProductContainer />", () => {
         price={109.95}
         image={imageUrl}
         onPress={mockOnPress}
+        product={product}
       />
     );
 
