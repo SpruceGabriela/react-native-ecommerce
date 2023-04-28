@@ -1,6 +1,11 @@
 import React, { useContext } from "react";
 import { Button } from "react-native";
-import { render, fireEvent, renderHook, act } from "@testing-library/react-native";
+import {
+  render,
+  fireEvent,
+  renderHook,
+  act,
+} from "@testing-library/react-native";
 import { CartProvider, CartContext } from "./CartContext";
 import { ProductType } from "../shared/types";
 
@@ -38,6 +43,28 @@ describe("<CartContext />", () => {
             <Button
               testID="add-to-cart"
               onPress={() => cartContext.addItemToCart(product)}
+              title="Add to cart"
+            />
+          )}
+        </CartContext.Consumer>
+        <TestComponent />
+      </CartProvider>
+    );
+
+    fireEvent.press(getByTestId("add-to-cart"));
+    fireEvent.press(getByTestId("check-cart"));
+
+    expect(mockOnPress).toHaveBeenCalledWith(product);
+  });
+
+  it("should remove item to cart", () => {
+    const { getByTestId } = render(
+      <CartProvider>
+        <CartContext.Consumer>
+          {(cartContext) => (
+            <Button
+              testID="add-to-cart"
+              onPress={() => cartContext.removeItemFromCart(product)}
               title="Add to cart"
             />
           )}
@@ -92,5 +119,53 @@ describe("<CartContext />", () => {
     });
 
     expect(result.current.getTotalPrice()).toBe(24);
+  });
+
+  it("should decrement the quantity of the given product", () => {
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+      <CartProvider>{children}</CartProvider>
+    );
+
+    const { result } = renderHook(() => useContext(CartContext), { wrapper });
+
+    act(() => {
+      result.current.addItemToCart(product);
+    });
+
+    expect(result.current.getItemsCount()).toBe(1);
+
+    act(() => {
+      result.current.decrementItemQuantity(product);
+    });
+
+    expect(result.current.getItemsCount()).toBe(0);
+  });
+
+  it("should return true if product is in cart", () => {
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+      <CartProvider>{children}</CartProvider>
+    );
+
+    const { result } = renderHook(() => useContext(CartContext), { wrapper });
+
+    act(() => {
+      result.current.addItemToCart(product);
+    });
+
+    expect(result.current.isInCart(product)).toBe(true);
+  });
+
+  it("should return false if product is not in cart", () => {
+    const wrapper = ({ children }: { children: React.ReactNode }) => (
+      <CartProvider>{children}</CartProvider>
+    );
+
+    const { result } = renderHook(() => useContext(CartContext), { wrapper });
+
+    act(() => {
+      result.current.removeItemFromCart(product);
+    });
+
+    expect(result.current.isInCart(product)).toBe(false);
   });
 });

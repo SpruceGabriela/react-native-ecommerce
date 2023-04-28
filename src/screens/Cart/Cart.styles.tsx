@@ -6,6 +6,7 @@ export const styles = StyleSheet.create({
   },
   cartLine: {
     flexDirection: "row",
+    justifyContent: "space-between",
     backgroundColor: "white",
     borderRadius: 16,
     padding: 10,

@@ -6,7 +6,16 @@ import { styles } from "./CartIcon.style";
 import Icon from "react-native-vector-icons/FontAwesome";
 
 const CartIcon: React.FC<CartIconProps> = ({ navigation }) => {
-  const { getItemsCount } = useContext(CartContext);
+  const { getItemsCount, items } = useContext(CartContext);
+
+  const handleNavigate = () => {
+    if (items.length) {
+      navigation.navigate("Cart");
+    } else {
+      return;
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.counter}>
@@ -16,9 +25,7 @@ const CartIcon: React.FC<CartIconProps> = ({ navigation }) => {
         name="shopping-cart"
         color="lightgray"
         size={30}
-        onPress={() => {
-          navigation.navigate("Cart");
-        }}
+        onPress={handleNavigate}
       />
     </View>
   );

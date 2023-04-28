@@ -7,6 +7,9 @@ export type CartContextProps = {
   getItemsCount: () => number;
   getTotalPrice: () => number;
   addItemToCart: (product: ProductType) => void;
+  decrementItemQuantity: (product: ProductType) => void;
+  removeItemFromCart: (product: ProductType) => void;
+  isInCart: (product: ProductType) => boolean;
 };
 
 export type CartContextProviderProps = {
