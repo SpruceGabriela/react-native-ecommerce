@@ -21,7 +21,7 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
         testID="image-container"
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.name}>{name.slice(0, 10)}</Text>
         <Text style={styles.price}>$ {price}</Text>
       </View>
     </TouchableOpacity>

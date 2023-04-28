@@ -4,24 +4,15 @@ export const styles = StyleSheet.create({
   card: {
     backgroundColor: "white",
     borderRadius: 16,
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    shadowColor: "black",
-    shadowOffset: {
-      height: 0,
-      width: 0,
-    },
-    elevation: 1,
-    marginVertical: 20,
+    padding: 10,
   },
   thumb: {
-    height: 260,
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-    width: "100%",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 150,
   },
   infoContainer: {
-    padding: 16,
+    padding: 8,
   },
   name: {
     fontSize: 22,
