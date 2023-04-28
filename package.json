@@ -45,6 +45,7 @@
     "react-native": "0.71.7",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
+    "react-native-vector-icons": "^9.2.0",
     "react-query": "^3.39.3",
     "react-test-renderer": "18.1.0"
   },
@@ -54,6 +55,7 @@
     "@types/jest": "^29.5.1",
     "@types/react": "~18.0.14",
     "@types/react-native": "^0.71.6",
+    "@types/react-native-vector-icons": "^6.4.13",
     "eslint": "^8.39.0",
     "eslint-config-airbnb": "^19.0.4",
     "husky": "^8.0.3",

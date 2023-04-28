@@ -5,6 +5,10 @@ import {
   FlatList,
   ListRenderItem,
   ListRenderItemInfo,
+  ScrollView,
+  SafeAreaView,
+  Image,
+  Button,
 } from "react-native";
 import { CartContext } from "../../context/CartContext";
 import { CartProps } from "./Cart.types";
@@ -23,8 +27,11 @@ const Cart: React.FC<CartProps> = () => {
 
     return (
       <View style={styles.cartLineTotal}>
-        <Text style={[styles.lineLeft, styles.lineTotal]}>Total</Text>
-        <Text style={styles.lineRight}>$ {total}</Text>
+        <View style={styles.row}>
+          <Text style={[styles.lineLeft, styles.lineTotal]}>Total</Text>
+          <Text style={styles.lineRight}>$ {total}</Text>
+        </View>
+        <Button onPress={() => {}} title="Place Order" />
       </View>
     );
   };
@@ -35,10 +42,16 @@ const Cart: React.FC<CartProps> = () => {
     if (info.item.product) {
       return (
         <View style={styles.cartLine}>
-          <Text style={styles.lineLeft}>
-            {info.item.product.title} x {info.item.quantity}
-          </Text>
-          <Text style={styles.lineRight}>$ {info.item.totalPrice}</Text>
+          <Image
+            style={styles.image}
+            source={{ uri: info.item.product.image }}
+          />
+          <View style={styles.productInfo}>
+            <Text style={styles.lineLeft}>
+              {info.item.product.title.slice(0, 15)}... x {info.item.quantity}
+            </Text>
+            <Text style={styles.lineRight}>$ {info.item.totalPrice}</Text>
+          </View>
         </View>
       );
     }
@@ -46,14 +59,15 @@ const Cart: React.FC<CartProps> = () => {
   };
 
   return (
-    <FlatList
-      style={styles.itemsList}
-      contentContainerStyle={styles.itemsListContainer}
-      data={items}
-      renderItem={renderItem}
-      keyExtractor={(item) => item.product.id.toString()}
-      ListFooterComponent={Totals}
-    />
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        style={styles.itemsList}
+        data={items}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.product.id.toString()}
+      />
+      <Totals />
+    </SafeAreaView>
   );
 };
 

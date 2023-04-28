@@ -30,12 +30,12 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ route }) => {
     if (data) {
       addItemToCart(product);
     }
-  }
+  };
 
   if (data) {
     return (
-      <SafeAreaView>
-        <ScrollView>
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
           <Image style={styles.image} source={{ uri: data.image }} />
           <View style={styles.infoContainer}>
             <Text style={styles.name}>{data.title}</Text>
