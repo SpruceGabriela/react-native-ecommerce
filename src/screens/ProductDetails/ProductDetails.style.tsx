@@ -1,32 +1,27 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-  card: {
-    backgroundColor: "white",
-    borderRadius: 16,
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    shadowColor: "black",
-    shadowOffset: {
-      height: 0,
-      width: 0,
-    },
-    elevation: 1,
-    marginVertical: 20,
+  container: {
+    flexGrow: 1
+  },
+  scrollView: {
+    padding: 12,
+    backgroundColor: "#eeeeee",
   },
   image: {
     height: 300,
     width: "100%",
   },
   infoContainer: {
-    padding: 16,
+    marginTop: 16,
   },
   name: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: "bold",
+    marginBottom: 8,
   },
   price: {
-    fontSize: 16,
+    fontSize: 24,
     fontWeight: "600",
     marginBottom: 8,
   },

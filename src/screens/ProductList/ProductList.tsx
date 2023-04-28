@@ -1,8 +1,6 @@
 import React from "react";
 import {
   FlatList,
-  ListRenderItem,
-  ListRenderItemInfo,
   View,
 } from "react-native";
 import ProductContainer from "../../components/ProductContainer";
