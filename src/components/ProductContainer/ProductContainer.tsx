@@ -10,8 +10,16 @@ const ProductContainer: React.FC<ProductContainerProps> = ({
   onPress,
 }) => {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
-      <Image style={styles.thumb} source={{ uri: image }} />
+    <TouchableOpacity
+      style={styles.card}
+      onPress={onPress}
+      testID="product-container-pressable"
+    >
+      <Image
+        style={styles.thumb}
+        source={{ uri: image }}
+        testID="image-container"
+      />
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{name}</Text>
         <Text style={styles.price}>$ {price}</Text>
