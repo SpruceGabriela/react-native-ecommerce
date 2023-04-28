@@ -36,7 +36,7 @@ const Cart: React.FC<CartProps> = () => {
       return (
         <View style={styles.cartLine}>
           <Text style={styles.lineLeft}>
-            {info.item.product.name} x {info.item.quantity}
+            {info.item.product.title} x {info.item.quantity}
           </Text>
           <Text style={styles.lineRight}>$ {info.item.totalPrice}</Text>
         </View>
