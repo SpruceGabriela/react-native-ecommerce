@@ -25,7 +25,6 @@ const ProductsList: React.FC<ProductListProps> = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container} edges={["left", "right"]}>
       <FlatList
-        style={styles.productsList}
         keyExtractor={(item: ProductType) => item.id.toString()}
         data={data}
         numColumns={2}

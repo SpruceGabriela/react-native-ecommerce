@@ -3,10 +3,11 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
+    backgroundColor: "#eeeeee",
   },
   productsList: {
-    padding: 10,
+    paddingTop: 10,
+    marginBottom: 100,
     backgroundColor: "#eeeeee",
   },
 });

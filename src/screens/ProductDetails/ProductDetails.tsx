@@ -30,7 +30,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ route }) => {
     if (data) {
       addItemToCart(product);
     }
-  }
+  };
 
   if (data) {
     return (
